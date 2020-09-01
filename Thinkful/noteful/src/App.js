@@ -5,6 +5,8 @@ import Sidebar from './Sidebar';
 import Main from './Main';
 import MainSidebar from './sidebars/MainSidebar';
 import store from './store.js';
+import NoteList from './NoteList';
+import NoteSideBar from './sidebars/NoteSidebar';
 
 
 export default class App extends React.Component {
@@ -33,18 +35,25 @@ export default class App extends React.Component {
           <h1>Noteful</h1>
 
     <Sidebar>
-          <Route path='' render={() => 
+          <Route path='/' render={() => 
               <MainSidebar 
                 folders={this.state.folders}
                 />
               } 
             />
-          {/* <Route path='/foo' component={FooSidebar} /> */}
+          <Route path='/' render={() =>
+              <NoteSideBar
+                notes={this.state.notes} />
+          } />
     </Sidebar>
-    {/* <Main>
-          <Route path='/' component={MainMain} />
-          <Route path='/foo' component={FooMain} />
-    </Main> */}
+      <Main>
+           <Route path='/' render={() =>  
+              <NoteList 
+           notes={this.state.notes} />
+          }          
+            />
+           {/* <Route path='/foo' component={FooMain} /> */}
+      </Main>
 
     </div>
   );
